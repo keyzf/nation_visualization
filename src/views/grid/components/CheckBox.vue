@@ -3,20 +3,25 @@
     <div class="list"
          v-if="count">
       <p>
-        <img src="@/assets/img/blue.png" />
-        <span>&nbsp;&nbsp;高端聚类建筑: {{count['商业聚类'].value}} 栋, 客户数量: {{count['商业聚类'].client}} 个</span>
-      </p>
-      <p>
-        <img src="@/assets/img/yellow.png" />
-        <span>&nbsp;&nbsp;园区建筑: {{count['园区'].value}} 栋, 客户数量: {{count['园区'].client}} 个</span>
-      </p>
-      <p>
         <img src="@/assets/img/red.png" />
         <span>&nbsp;&nbsp;写字楼建筑: {{count['写字楼'].value}} 栋, 客户数量: {{count['写字楼'].client}} 个</span>
       </p>
       <p>
+        <img src="@/assets/img/yellow.png" />
+        <span>&nbsp;&nbsp;园区建筑: {{count['园区'].value}} 个, 客户数量: {{count['园区'].client}} 个</span>
+      </p>
+      <p>
+        <img src="@/assets/img/blue.png" />
+        <span>&nbsp;&nbsp;商业聚类建筑: {{count['商业聚类'].value}} 个, 客户数量: {{count['商业聚类'].client}} 个</span>
+      </p>
+
+      <p>
         <img src="@/assets/img/green.png" />
-        <span>&nbsp;&nbsp;专业市场建筑: {{count['专业市场'].value}} 栋, 客户数量: {{count['专业市场'].client}} 个</span>
+        <span>&nbsp;&nbsp;专业市场建筑: {{count['专业市场'].value}} 个, 客户数量: {{count['专业市场'].client}} 个</span>
+      </p>
+      <p>
+        <img src="@/assets/img/purple.png" />
+        <span>&nbsp;&nbsp;小区建筑: {{count['小区'].value}} 个, 住宅套数: {{count['小区'].client}} 个</span>
       </p>
     </div>
   </el-card>

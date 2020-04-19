@@ -21,6 +21,9 @@ export default {
         formatter: val => {
           let name = val.name.split('-')[0]
           let bValue = val.name.split('-')[1]
+          if (name === '小区') {
+            return `${name}住宅套数: ${val.value}个, 建筑物: ${bValue}栋`
+          }
           return `${name}客户: ${val.value}个, 建筑物: ${bValue}栋`
         },
         color: '#303133',

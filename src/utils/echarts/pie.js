@@ -16,7 +16,7 @@ export default function(info) {
     if (item[0] === info.id) {
       if (item[1] === '小区') {
         scattered.value += item[4]
-        scattered.data.push({ name: item[1], value: item[4] })
+        scattered.data.push({ name: `${item[1]}-${item[2]}`, value: item[4] })
       } else {
         gather.value += item[3]
         gather.data.push({ name: `${item[1]}-${item[2]}`, value: item[3] })

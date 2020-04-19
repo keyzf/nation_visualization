@@ -44,7 +44,7 @@ export default {
         Object.assign({}, mapConfig, {
           center: [116.47268499961308, 39.9335719999479],
           mapStyle: 'amap://styles/whitesmoke',
-          zoom: 10
+          zoom: 11
         })
       )
       this.addPolygons(13), this.addMarkers()
