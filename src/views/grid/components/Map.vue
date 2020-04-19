@@ -7,26 +7,14 @@
 <script>
 /* eslint-disable no-undef */
 const ZOOMBOUNDARY = 11
-import { mapConfig, polygonConfig } from '@/config/map'
+import { polygonConfig } from '@/config/map'
+import mixin from '../mixins/map'
 import polygons from '@/data/bj-polygons'
 import polygons_1 from '@/data/bj-polygons-1'
-import bjMarkers from '@/data/bj-markers'
-import bjMarkers_1 from '@/data/bj-markers-1'
-import xzl from '@/assets/img/red.png'
-import yq from '@/assets/img/yellow.png'
-import zysc from '@/assets/img/green.png'
-import gdjl from '@/assets/img/blue.png'
-import xq from '@/assets/img/purple.png'
-
-const markerStyles = {
-  写字楼: 0,
-  园区: 1,
-  专业市场: 2,
-  高端聚类: 3,
-  小区: 4
-}
 
 export default {
+  mixins: [mixin],
+
   data() {
     return {
       polygons: ''
@@ -34,19 +22,13 @@ export default {
   },
 
   mounted() {
-    this.initMap()
+    this.initTools()
   },
 
   methods: {
-    initMap() {
-      this.map = new AMap.Map(
-        'map',
-        Object.assign({}, mapConfig, {
-          center: [116.47268499961308, 39.9335719999479],
-          mapStyle: 'amap://styles/whitesmoke',
-          zoom: 11
-        })
-      )
+    addPolygon() {},
+
+    initTools() {
       this.addPolygons(13), this.addMarkers()
       AMap.plugin(['AMap.ToolBar'], () => {
         this.map.addControl(new AMap.ToolBar())
@@ -108,55 +90,6 @@ export default {
       x = x / path.length
       y = y / path.length
       return [x, y]
-    },
-
-    addMarkers() {
-      const style = [
-        {
-          url: xzl,
-          anchor: new AMap.Pixel(4, 4),
-          size: new AMap.Size(4, 4)
-        },
-        {
-          url: yq,
-          anchor: new AMap.Pixel(4, 4),
-          size: new AMap.Size(4, 4)
-        },
-        {
-          url: zysc,
-          anchor: new AMap.Pixel(4, 4),
-          size: new AMap.Size(4, 4)
-        },
-        {
-          url: gdjl,
-          anchor: new AMap.Pixel(4, 4),
-          size: new AMap.Size(4, 4)
-        },
-        {
-          url: xq,
-          anchor: new AMap.Pixel(4, 4),
-          size: new AMap.Size(4, 4)
-        }
-      ]
-      let massMarkers = []
-      let markers = bjMarkers
-      if (this.$route.params.marker_id) {
-        markers = bjMarkers_1
-      }
-      markers.forEach(marker => {
-        massMarkers.push({
-          lnglat: [marker.lng, marker.lat],
-          style: markerStyles[marker.type]
-        })
-      })
-
-      const mass = new AMap.MassMarks(massMarkers, {
-        opacity: 0.8,
-        zIndex: 111,
-        cursor: 'pointer',
-        style: style
-      })
-      mass.setMap(this.map)
     }
   }
 }
@@ -165,23 +98,5 @@ export default {
 <style>
 #map {
   height: calc(100vh - 50px);
-}
-.amap-info-close {
-  display: none;
-}
-.info {
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  color: #303133;
-  font-size: 13px;
-}
-.info p {
-  height: 18px;
-  line-height: 18px;
-  margin: 8px;
-}
-.fw-600 {
-  font-weight: 600;
-  color: #000;
 }
 </style>

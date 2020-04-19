@@ -11,6 +11,13 @@ export const polygonConfig = {
   fillColor: '#2544a4',
   fillOpacity: 0.4,
   strokeWeight: 0,
+  strokeColor: '#2544a4'
+}
+
+export const polygonEditorConfig = {
   strokeColor: '#2544a4',
-  zooms: [12, 14]
+  strokeWeight: 2,
+  fillColor: '#2544a4',
+  fillOpacity: 0.4,
+  strokeStyle: 'solid'
 }

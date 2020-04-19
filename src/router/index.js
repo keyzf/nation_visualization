@@ -36,6 +36,12 @@ export const constantRoutes = [
         name: 'Grid',
         component: () => import('@/views/grid/index'),
         meta: { title: '朝阳区网格', icon: 'dashboard' }
+      },
+      {
+        path: '/grid/marker/edit',
+        name: 'edit',
+        component: () => import('@/views/grid/edit'),
+        meta: { title: '网格划分', icon: 'dashboard' }
       }
     ]
   },
