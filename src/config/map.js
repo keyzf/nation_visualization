@@ -10,7 +10,7 @@ export const mapConfig = {
 export const polygonConfig = {
   fillColor: '#2544a4',
   fillOpacity: 0.4,
-  strokeWeight: 0,
+  strokeWeight: 1,
   strokeColor: '#2544a4'
 }
 

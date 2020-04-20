@@ -3,6 +3,7 @@
     <Map />
     <InfoWindow />
     <Checkbox />
+    <PolygonInfo />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import Map from './components/Map'
 import InfoWindow from './components/InfoWindow'
 import Checkbox from './components/CheckBox'
+import PolygonInfo from './components/PolygonInfo'
 
 export default {
   components: {
     Map,
     InfoWindow,
-    Checkbox
+    Checkbox,
+    PolygonInfo
   }
 }
 </script>

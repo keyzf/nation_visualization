@@ -27,21 +27,21 @@ export default {
   },
 
   mounted() {
-    this._event.$on('window-info', info => {
-      this.setWindowInfo(info)
+    this._event.$on('window-info', obj => {
+      this.setWindowInfo(obj)
     })
     this.echarts = echarts.init(this.$refs['echarts'], 'customed')
   },
 
   methods: {
-    setWindowInfo(info) {
+    setWindowInfo(obj) {
       this.windowStyle.right = '20px'
       this.windowStyle.top = '20px'
-      this.setEchartsOption(info)
+      this.setEchartsOption(obj)
     },
 
-    setEchartsOption(info) {
-      let option = pieFormater(info)
+    setEchartsOption(obj) {
+      let option = pieFormater(obj)
       this.echarts.setOption(option)
     }
   }
@@ -52,12 +52,12 @@ export default {
 .info-window {
   position: absolute;
   z-index: 99;
-  height: 280px;
-  width: 560px;
+  height: 200px;
+  width: 500px;
   background-color: #fff;
 }
 .echarts {
-  height: 280px;
-  width: 560px;
+  height: 200px;
+  width: 500px;
 }
 </style>

@@ -29,10 +29,10 @@ export default {
     addPolygon() {},
 
     initTools() {
-      this.addPolygons(13), this.addMarkers()
-      AMap.plugin(['AMap.ToolBar'], () => {
-        this.map.addControl(new AMap.ToolBar())
-      })
+      this.addPolygons(ZOOMBOUNDARY), this.addMarkers()
+      // AMap.plugin(['AMap.ToolBar'], () => {
+      //   this.map.addControl(new AMap.ToolBar())
+      // })
       this.map.on('zoomchange', () => {
         let zoom = this.map.getZoom()
         this.addPolygons(zoom)
@@ -44,7 +44,7 @@ export default {
       if (zoom <= ZOOMBOUNDARY && this.polygons === polygons_1) return
       this.map.clearMap()
       this.polygons = zoom > ZOOMBOUNDARY ? polygons : polygons_1
-      this.polygons.forEach(item => {
+      this.polygons.forEach((item, index) => {
         let path = []
         item.path.split(';').forEach(subItem => {
           let lng = subItem.split(',')[0]
@@ -62,19 +62,13 @@ export default {
         )
 
         this.map.add(polygon)
-        if (zoom > ZOOMBOUNDARY) {
-          polygon.on('mouseover', () => {
-            let area = (polygon.getArea() / 1000000).toFixed(2)
-            polygon.setOptions({ fillOpacity: 1 })
-            this._event.$emit('window-info', {
-              id: item.id,
-              area: area
-            })
-          })
-          polygon.on('mouseout', () => {
-            polygon.setOptions({ fillOpacity: 0.4 })
-          })
-        }
+        polygon.on('mouseover', () => {
+          polygon.setOptions({ fillOpacity: 1 })
+          this._event.$emit('window-info', {id: `cy-${index}`, polygon: polygon})
+        })
+        polygon.on('mouseout', () => {
+          polygon.setOptions({ fillOpacity: 0.4 })
+        })
       })
     },
 

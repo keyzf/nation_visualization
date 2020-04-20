@@ -32,6 +32,16 @@ export default {
   },
 
   methods: {
+    copyStringToClipboard(str) {
+      var el = document.createElement('textarea')
+      el.value = str
+      el.setAttribute('readonly', '')
+      el.style = { position: 'absolute', left: '-9999px' }
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    },
     exportPath() {
       let paths = []
       this.polygons.forEach(item => {
@@ -42,19 +52,13 @@ export default {
         paths.push(path)
       })
       let text = JSON.stringify(paths)
-      navigator.clipboard.writeText(text).then(
-        () => {
-          this.$notify({
-            title: '成功',
-            type: 'success',
-            message: '路径已复制到剪切板',
-            position: 'top-left'
-          })
-        },
-        function(err) {
-          console.error('Async: Could not copy text: ', err)
-        }
-      )
+      this.copyStringToClipboard(text)
+      this.$notify({
+        title: '成功',
+        type: 'success',
+        message: '路径已复制到剪切板',
+        position: 'top-left'
+      })
     }
   }
 }

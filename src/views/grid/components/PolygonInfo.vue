@@ -38,7 +38,8 @@ export default {
   methods: {
     setPolygonInfo(polygon) {
       this.polygon = polygon
-
+      if (!polygon) return
+      this.info = {}
       markers.forEach(item => {
         if (this.polygon.contains([item.lng, item.lat])) {
           if (this.info[item.type]) {
@@ -71,7 +72,7 @@ export default {
 <style scoped>
 .info {
   position: absolute;
-  left: 20px;
+  right: 20px;
   top: 20px;
   font-size: 12px;
 }
