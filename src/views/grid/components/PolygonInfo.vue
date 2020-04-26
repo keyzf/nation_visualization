@@ -44,11 +44,11 @@ export default {
         if (this.polygon.contains([item.lng, item.lat])) {
           if (this.info[item.type]) {
             this.info[item.type].count++
-            this.info[item.type].customers += item.count
+            this.info[item.type].customers += Number(item.count)
           } else {
             this.info[item.type] = {
               count: 1,
-              customers: item.count
+              customers: Number(item.count)
             }
           }
         }

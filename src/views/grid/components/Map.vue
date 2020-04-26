@@ -10,6 +10,7 @@ const ZOOMBOUNDARY = 11
 import { polygonConfig } from '@/config/map'
 import mixin from '../mixins/map'
 import polygons from '@/data/bj-polygons'
+import { mPolygons, dIDs } from '@/data/bj-polygons-m'
 import polygons_1 from '@/data/bj-polygons-1'
 
 export default {
@@ -43,8 +44,12 @@ export default {
       if (zoom > ZOOMBOUNDARY && this.polygons === polygons) return
       if (zoom <= ZOOMBOUNDARY && this.polygons === polygons_1) return
       this.map.clearMap()
-      this.polygons = zoom > ZOOMBOUNDARY ? polygons : polygons_1
+      let minPolygons = polygons.concat(mPolygons)
+      this.polygons = zoom > ZOOMBOUNDARY ? minPolygons : polygons_1
       this.polygons.forEach((item, index) => {
+        if (this.polygons == minPolygons && dIDs.includes(index)) {
+          return
+        }
         let path = []
         item.path.split(';').forEach(subItem => {
           let lng = subItem.split(',')[0]
@@ -64,7 +69,10 @@ export default {
         this.map.add(polygon)
         polygon.on('mouseover', () => {
           polygon.setOptions({ fillOpacity: 1 })
-          this._event.$emit('window-info', {id: `cy-${index}`, polygon: polygon})
+          this._event.$emit('window-info', {
+            id: `cy-${index}`,
+            polygon: polygon
+          })
         })
         polygon.on('mouseout', () => {
           polygon.setOptions({ fillOpacity: 0.4 })

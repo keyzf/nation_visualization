@@ -3,7 +3,7 @@
        :style="windowStyle">
     <el-card class="box-card">
       <div ref="echarts"
-           class="echarts">表格</div>
+           class="echarts"></div>
     </el-card>
   </div>
 </template>

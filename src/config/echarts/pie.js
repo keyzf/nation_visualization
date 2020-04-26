@@ -9,7 +9,7 @@ export default {
         formatter: val => {
           let name = val.name.split('-')[0]
           let bValue = val.name.split('-')[1]
-          return `${name}客户: ${val.value}个, 建筑物: ${bValue}栋`
+          return `${name}建筑物: ${bValue}栋, 客户: ${val.value}个`
         },
         color: '#303133',
         borderWidth: 1,
